@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include <godforma.h>
+#include <godforma.h>
+
+int mhandler(char *buf, size_t bufsize);
 
 int main(void) {
 
@@ -24,20 +26,28 @@ int main(void) {
 					perror("malloc err");
 					exit(EXIT_FAILURE);
 				}
-				if (strcpy(primbuf, tempbuf) == NULL) {
-					perror("strcpy err");
-					exit(EXIT_FAILURE);
-				}
+				memcpy(primbuf, tempbuf, count - 1);
 			}
 			*(primbuf + count++) = (char) c;
 		}
 		*(primbuf + count) = '\0';
 		if (strcmp(primbuf, "exit") == 0)
 			exit(2);
-		printf("%s\n", primbuf);
+		printf("%d\n", mhandler(primbuf, bufsize));
 	}
 	free(primbuf);
 	free(tempbuf);
 	return 0;
+
+}
+
+int mhandler(char *buffer, size_t size) {
+
+	char *token;
+	token = strtok(buffer, " ");
+	FILE *opf = fopen(token, "r");
+	token = strtok(NULL, " ");
+	token = strtok(NULL, " ");
+	return find(token, strlen(token), NULL);
 
 }

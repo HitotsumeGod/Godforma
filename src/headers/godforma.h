@@ -5,9 +5,9 @@
 
 #undef find
 #undef del
-extern FILE* opf;	//FILE OPERATING ON
+extern FILE *opf;	//FILE OPERATING ON
 
-extern long find(char *phrase, char *opts[]);
+extern long find(const char *phrase, size_t size, char *opts[]);
 extern long findrepl(char *phrase1, char *phrase2, char *opts[]);
 extern int re(char *phrase, char *opts[]);
 extern int givname(char *fname);
